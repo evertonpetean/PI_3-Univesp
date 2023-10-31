@@ -14,10 +14,10 @@ function App() {
   //chamada da API
   const handleSearch = () => {
     if (city) {
-      fetch(`https://api.weatherapi.com/v1/current.json?key=cfc844e87500429f992194636233010&q=${city}&lang=pt`)
+      fetch(`https://api.weatherapi.com/v1/forecast.json?key=cfc844e87500429f992194636233010&q=${city}&lang=pt`)
         .then((response) => {
           if (!response.ok) {
-            throw new Error('Erro na solicitação da API');
+            throw new Error('Erro na solicitação');
           }
           return response.json();
         })
@@ -48,11 +48,11 @@ function App() {
           <p class='lead'>
             Digite o nome da sua cidade no campo abaixo e em seguida clique em pesquisar.
           </p>
-          <p>
+          <p class=''>
             <em>Para visualizar o histórico de dados climáticos do Município de Piacatu.
               <a class='' href='https://piacatu.sp.gov.br'>(CLIQUE AQUI)</a></em>
           </p>
-          <div class='row mb-2'>
+          <div class='row mb-3'>
             <div class='col-md-5'>
               <input
                 onChange={handleChange}
@@ -63,17 +63,21 @@ function App() {
             Pesquisar
           </button>
 
-          
-          {error && <p class="text-danger">{error}</p>}
+          {error && <p class="text-danger mt-1">{error}</p>}
           {weatherData && (
-              <div class='weather-data'>
-                <p>Local: {weatherData.location.name}, {weatherData.location.region} - {weatherData.location.country}</p>
-                <p>Temperatura: {weatherData.current.temp_c}°C</p>
-                <p>Umidade do ar: {weatherData.current.humidity}%</p>
-                <p>Hoje o dia está: {weatherData.current.condition.text}</p>
+            <div class='weather-data mt-4 d-flex flex-column align-items-center' >
+              <p class='h4'>Agora em {weatherData.location.name}, {weatherData.location.region} - {weatherData.location.country}</p>
+              <span class='mt-3 mb-0'><img src={weatherData.current.condition.icon} alt='' /></span>
+              <div class='lead d-flex flex-column font-weight-bold font-italic '>
+                <span class='h1'>{weatherData.current.temp_c} °C  </span>
+                <span class=''>{weatherData.current.condition.text} </span>
+                <span class=''>Umidade do ar: {weatherData.current.humidity}%</span>
+                <span class=''>Vento: {weatherData.current.wind_kph} km/h </span>
               </div>
+            </div>
+
           )}
-          
+
 
         </div>
 
