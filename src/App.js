@@ -14,7 +14,7 @@ function App() {
   //chamada da API
   const handleSearch = () => {
     if (city) {
-      fetch(`http://api.weatherapi.com/v1/current.json?key=cfc844e87500429f992194636233010&q=${city}&lang=pt`)
+      fetch(`https://api.weatherapi.com/v1/current.json?key=cfc844e87500429f992194636233010&q=${city}&lang=pt`)
         .then((response) => {
           if (!response.ok) {
             throw new Error('Erro na solicitação da API');
@@ -67,7 +67,7 @@ function App() {
           {error && <p class="text-danger">{error}</p>}
           {weatherData && (
               <div class='weather-data'>
-                <p>Local: {weatherData.location.name}, {weatherData.location.region}-{weatherData.location.country}</p>
+                <p>Local: {weatherData.location.name}, {weatherData.location.region} - {weatherData.location.country}</p>
                 <p>Temperatura: {weatherData.current.temp_c}°C</p>
                 <p>Umidade do ar: {weatherData.current.humidity}%</p>
                 <p>Hoje o dia está: {weatherData.current.condition.text}</p>
