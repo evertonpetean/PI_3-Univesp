@@ -1,16 +1,12 @@
 import { useState } from "react";
 
-
 function App() {
   const [city, setCity] = useState('')
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
-
   const handleChange = (e) => {
     setCity(e.target.value)
-
   }
-
   //chamada da API
   const handleSearch = () => {
     if (city) {
@@ -31,7 +27,6 @@ function App() {
         });
     }
   }
-
   return (
     <div>
       <nav class="navbar navbar-expand-md w-auto bg-success text-white mb-4 d-flex justify-content-start align-items-center">
@@ -40,17 +35,27 @@ function App() {
         </a>
         <h5>Sistema de Consulta de Dados Climáticos - Municipio de Piacatu</h5>
       </nav>
-      <main class="container">
+
+      <main class="container ">
         <div class='jumbotron'>
-          <h1>
-            Verifique agora a previsão do tempo em sua cidade!
-          </h1>
           <p class='lead'>
-            Digite o nome da sua cidade no campo abaixo e em seguida clique em pesquisar.
+            Periodo da manhã.
           </p>
-          <p class=''>
-            <em>Para visualizar o histórico de dados climáticos do Município de Piacatu.
-              <a class='' href='https://piacatu.sp.gov.br'>(CLIQUE AQUI)</a></em>
+          <div class=''>
+            <iframe title="Report Section" width="800" height="300" 
+            src="https://app.powerbi.com/view?r=eyJrIjoiZGNkMmMxZDItNTI4My00OTI0LTkzNzAtZWY3ZmQ3ZDBlYjIxIiwidCI6ImQwNGQzMzgzLWQ3YzctNGU0OC05NGU2LTUxODk2YjgxMjI5YSJ9" frameborder="0" allowFullScreen="true"></iframe>
+          </div>
+
+          <p class='lead'>
+            Periodo da tarde.
+          </p>
+          <div class=''>
+            <iframe title="Report Section" width="800" height="300"
+              src="https://app.powerbi.com/view?r=eyJrIjoiZGU0NDMyOTYtZTRkNy00MjNlLTkyYzItZWI0YmZmODExYTYyIiwidCI6ImQwNGQzMzgzLWQ3YzctNGU0OC05NGU2LTUxODk2YjgxMjI5YSJ9" frameborder="0" allowFullScreen="true"></iframe>
+          </div>
+
+          <p class='lead'>
+            Para consultar outro local, digite o nome da cidade no campo abaixo e clique em pesquisar.
           </p>
           <div class='row mb-3'>
             <div class='col-md-5'>
@@ -75,16 +80,10 @@ function App() {
                 <span class=''>Vento: {weatherData.current.wind_kph} km/h </span>
               </div>
             </div>
-
           )}
-
-
         </div>
-
       </main>
-
     </div >
   );
 }
-
 export default App;
